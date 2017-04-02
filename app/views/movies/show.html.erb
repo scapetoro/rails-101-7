@@ -1,0 +1,7 @@
+<div class="col-md-12">
+  <div class="movie">
+    <%= link_to("Edit", edit_movie_path(@movie), class: "btn btn-primary pull-right")%>
+  </div>
+  <h2><%= @movie.title %></h2>
+  <p><%= @movie.description %></p>
+</div>
