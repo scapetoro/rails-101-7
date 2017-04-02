@@ -2,24 +2,6 @@
   <h2>新增电影讨论版</h2>
 
   <hr>
-  <%= form_for @movie do |f| %>
+  <%= render "form" %>
 
-  <% if @movie.errors.any? %>
-  <ul>
-    <% @movie.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  片名
-  <%= f.text_field :title %>
-  <br>
-  简介
-  <br>
-  <%= f.text_area :description %>
-  <br>
-
-  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
-  <% end %>
 </div>
