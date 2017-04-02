@@ -8,6 +8,7 @@
         <th>#</th>
         <th>Title</th>
         <th>Description</th>
+        <th>Creator</th>
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
          <td>#</td>
          <td><%= link_to(movie.title, movie_path(movie)) %></td>
          <td><%= movie.description %></td>
+         <td><%= movie.user.email %></td>
          <td>
            <%= link_to("Edit", edit_movie_path(movie), class: "btn btn-sm btn-default")%>
            <%= link_to("Delete", movie_path(movie),    class: "btn btn-sm btn-default",
