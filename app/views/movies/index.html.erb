@@ -17,7 +17,7 @@
        <tr>
          <td>#</td>
          <td><%= link_to(movie.title, movie_path(movie)) %></td>
-         <td><%= movie.description %></td>
+         <td><%= simple_format(movie.description) %></td>
          <td><%= movie.user.email %></td>
          <td> <%= movie.reviews.count %> </td>
          <td>

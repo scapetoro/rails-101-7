@@ -15,7 +15,7 @@
     <tbody>
       <% @reviews.each do |review| %>
         <tr>
-          <td> <%= review.content %> </td>
+          <td> <%= simple_format(review.content) %> </td>
           <td> <%= review.movie.title %> </td>
           <td> <%= review.updated_at %> </td>
           <td> <%= link_to('Edit', edit_movie_review_path(review.movie, review), class: "btn btn-default btn-xs") %></td>
