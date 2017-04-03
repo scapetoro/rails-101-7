@@ -1,0 +1,28 @@
+<div class="col-md-12">
+
+  <h2 class="text-center"> 我加入的电影群 </h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> # </th>
+        <th> Title </th>
+        <th> Description </th>
+        <th> Review Count </th>
+        <th> Last Update </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td> # </td>
+          <td> <%= link_to(movie.title, movie_path(movie)) %> </td>
+          <td> <%= movie.description %> </td>
+          <td> <%= movie.reviews.count %> </td>
+          <td> <%= movie.updated_at %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
