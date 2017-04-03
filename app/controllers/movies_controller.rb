@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user! ,only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user! ,only: [:new, :create, :edit, :update, :destroy, :join, :quit]
   before_action :find_movie_and_check_permission, only: [:edit, :update, :destroy]
   def index
     @movies = Movie.all.paginate(:page => params[:page], :per_page =>5)
@@ -22,6 +22,7 @@ class MoviesController < ApplicationController
     @movie.user = current_user
 
     if @movie.save
+      current_user.join!(@movie)
       redirect_to movies_path
     else
       render :new
@@ -39,6 +40,31 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     redirect_to movies_path, alert: "Movie Deleted"
+  end
+
+  def join
+    @movie = Movie.find(params[:id])
+
+    if !current_user.is_member_of?(@movie)
+      current_user.join!(@movie)
+      flash[:notice] = "加入本影评群成功！"
+    else
+      flash[:warning] = "已经是本群成员了！"
+    end
+    redirect_to movie_path(@movie)
+  end
+
+  def quit
+    @movie = Movie.find(params[:id])
+
+    if current_user.is_member_of?(@movie)
+      current_user.quit!(@movie)
+      flash[:alert] = "已退出本影评群！"
+    else
+      flash[:warning] = "你不是本群成员！"
+    end
+
+    redirect_to movie_path(@movie)
   end
 
   private
