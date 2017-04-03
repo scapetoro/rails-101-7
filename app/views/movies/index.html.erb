@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @movies.each do |movie| %>
+      <% @movies.sort_by {|movie| -movie.reviews.count}.each do |movie| %>
        <tr>
          <td>#</td>
          <td><%= link_to(movie.title, movie_path(movie)) %></td>
