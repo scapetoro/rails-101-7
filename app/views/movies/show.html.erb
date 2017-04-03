@@ -2,11 +2,30 @@
   <div class="movie">
 
     <%= link_to("Write a Review", new_movie_review_path(@movie), class: "btn btn-default pull-right")%>
-    
+
     <% if current_user && current_user == @movie.user %>
     <%= link_to("Edit", edit_movie_path(@movie), class: "btn btn-primary pull-right")%>
     <% end %>
   </div>
   <h2><%= @movie.title %></h2>
   <p><%= @movie.description %></p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>影评内容</th>
+        <th>发表者</th>
+        <th>发表时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.content %></td>
+          <td><%= review.user.email %></td>
+          <td><%= review.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
